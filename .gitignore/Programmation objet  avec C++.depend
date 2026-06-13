@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1780660393 source:c:\users\halim\onedrive\bureau\c\programmation objet  avec c++\main.cpp
+	<iostream>
+	<cstring>
+	"chaine.h"
+
+1778945072 source:c:\users\halim\onedrive\bureau\c\programmation objet  avec c++\td2.cpp
+	<iostream>
+
+1780658484 source:c:\users\halim\onedrive\bureau\c\programmation objet  avec c++\td4.cpp
+
+1780660415 c:\users\halim\onedrive\bureau\c\programmation objet  avec c++\include\chaine.h
+	<iostream>
+	<cstring>
+	<cstdlib>
+
