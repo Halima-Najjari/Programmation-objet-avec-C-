@@ -117,7 +117,7 @@ void Decale_gauche(int T[], int n) {
     }
 }
 
-int main() {
+int nain1() {
     int n;
     cout << "Donner la taille : ";
     cin >> n;
@@ -147,11 +147,6 @@ int main() {
     tri_decroissant(T, n);
     cout << "Tableau trie (decroissant) : ";
     affiche(T, n);
-
-    int a, b;
-    cout << "Intervalle [a,b] : ";
-    cin >> a >> b;
-    cout << "Nombre d'elements : " << nb_elements_intervalle(T, n, a, b) << endl;
 
     int val;
     cout << "Valeur a supprimer : ";
