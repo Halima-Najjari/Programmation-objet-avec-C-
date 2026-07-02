@@ -18,18 +18,18 @@ int main() {
     ch1.afficher();
     ch2.afficher();
 
-    // Test de la concaténation
+    // Test de la concatÃ©nation
     cout << "\n--- Test Concatenation ---" << endl;
     ch1.concatenation(ch2); // ch1 ghadi twlli "HelloWorld"
     ch1.afficher();
 
-    // Test de l'accès
+    // Test de l'accÃ¨s
     cout << "\n--- Test Acces au caractere d'index 4 ---" << endl;
     cout << "Le caractere est: " << ch1.acces(4) << endl; // Ghadi y'affichi 'o'
 
     // Test de la comparaison
     cout << "\n--- Test Comparaison ---" << endl;
-    ch1.comparaison(ch2); // Différentes
+    ch1.comparaison(ch2); // DiffÃ©rentes
 
     Complexe c1(3, 4);
     Complexe c2(1, -2);

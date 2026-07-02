@@ -1,8 +1,12 @@
 #ifndef FRACTION_H
 #define FRACTION_H
 
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
 class Fraction {
-int num, den; // Numérateur et dénominateur
+int num, den; // NumÃ©rateur et dÃ©nominateur
 // Fonction pour calculer le PGCD de deux nombres
 int pgcd(int x, int y) {
 while (y != 0) {
@@ -12,24 +16,24 @@ x = temp;
 }
 return x;
 }
-// Fonction pour normaliser la fraction (rendre irréductible)
+// Fonction pour normaliser la fraction (rendre irrÃ©ductible)
 void normalise() {
 int diviseur = pgcd(abs(num), abs(den));
 
 num /= diviseur;
 den /= diviseur;
-if (den &lt; 0) { // S&#39;assurer que le dénominateur est positif
+if (den < 0) { // S'assurer que le dÃ©nominateur est positif
 num = -num;
 den = -den;
 }
 }
 public:
 // Constructeurs
-Fraction(){ // Initialisation à 0/1
+Fraction(){ // Initialisation Ã  0/1
 num = 0;
 den = 1;
 }
-Fraction(int i){ // Initialisation à un entier
+Fraction(int i){ // Initialisation Ã  un entier
 num = i;
 den = 1;
 }
@@ -41,11 +45,11 @@ den = d;
 normalise();
 }
 else{
-cout&lt;&lt;&quot;PAS POSSIBLE&quot;&lt;&lt;endl;
+cout<<"PAS POSSIBLE"<<endl;
 }
 normalise();
 }
-Fraction(const Fraction &amp;f) {
+Fraction(const Fraction &f) {
 num = f.num;
 
 den = f.den;
@@ -57,27 +61,29 @@ normalise();
 // Affichage de la fraction
 void affiche() {
 if (den == 1) {
-cout &lt;&lt; num;
+cout << num;
 } else {
-cout &lt;&lt; num &lt;&lt; &quot;/&quot; &lt;&lt; den;
+cout << num << "/" << den;
 }
 }
-// Opérations sur les fractions
-Fraction somme(const Fraction &amp;f) {
+// OpÃ©rations sur les fractions
+Fraction somme(const Fraction &f) {
 return Fraction(num * f.den + f.num * den, den * f.den);
 }
-Fraction difference(const Fraction &amp;f) {
+Fraction difference(const Fraction &f) {
 return Fraction(num * f.den - f.num * den, den * f.den);
 }
-Fraction produit(const Fraction &amp;f) {
+Fraction produit(const Fraction &f) {
 return Fraction(num * f.num, den * f.den);
 }
-Fraction division(const Fraction &amp;f) {
+Fraction division(const Fraction &f) {
 if (f.num == 0) {
-cout &lt;&lt; &quot;Erreur : Division par zéro !\n&quot;;
+cout << "Erreur : Division par zÃ©ro !\n";
 }
 return Fraction(num * f.den, den * f.num);
 }
+int getNum() const { return num; }
+int getDen() const { return den; }
 };
 
 #endif // FRACTION_H

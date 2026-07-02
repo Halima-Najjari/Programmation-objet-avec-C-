@@ -93,6 +93,9 @@ public:
     void afficher() const {
         cout << "Texte: " << texte << " | Longueur: " << longueur << endl;
     }
+
+    int getLongueur() const { return longueur; }
+    const char* getTexte() const { return texte; }
 };
 
 

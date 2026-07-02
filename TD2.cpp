@@ -60,7 +60,7 @@ void ajout_dernier_chiffre(int T[], int n) {
     }
 }
 
-// valeur la plus répétée
+// valeur la plus rÃ©pÃ©tÃ©e
 int occurrence_max(int T[], int n) {
     int maxOcc = 0;
     int valeur = T[0];
@@ -105,12 +105,12 @@ void Supp_occurrence(int T[], int &n, int val) {
                 T[j] = T[j+1];
             }
             n--;
-            i--; // important pour re-vérifier
+            i--; // important pour re-vÃ©rifier
         }
     }
 }
 
-// décalage gauche
+// dÃ©calage gauche
 void Decale_gauche(int T[], int n) {
     for(int i = 0; i < n-1; i++) {
         T[i] = T[i+1];
