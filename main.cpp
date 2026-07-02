@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <stdexcept>
 #include "chaine.h"
 #include "Complexe.h"
 #include "Fraction.h"
@@ -18,18 +19,22 @@ int main() {
     ch1.afficher();
     ch2.afficher();
 
-    // Test de la concaténation
+    // Test de la concatenation
     cout << "\n--- Test Concatenation ---" << endl;
-    ch1.concatenation(ch2); // ch1 ghadi twlli "HelloWorld"
+    ch1.concatenation(ch2);
     ch1.afficher();
 
-    // Test de l'accès
+    // Test de l'acces
     cout << "\n--- Test Acces au caractere d'index 4 ---" << endl;
-    cout << "Le caractere est: " << ch1.acces(4) << endl; // Ghadi y'affichi 'o'
+    try {
+        cout << "Le caractere est: " << ch1.acces(4) << endl;
+    } catch (const out_of_range &e) {
+        cerr << "Erreur d'acces: " << e.what() << endl;
+    }
 
     // Test de la comparaison
     cout << "\n--- Test Comparaison ---" << endl;
-    ch1.comparaison(ch2); // Différentes
+    ch1.comparaison(ch2);
 
     Complexe c1(3, 4);
     Complexe c2(1, -2);
@@ -61,29 +66,33 @@ int main() {
     cout << "Entrez la premiere fraction (num den) : ";
     cin >> num1 >> den1;
 
-    Fraction f1(num1, den1);
+    try {
+        Fraction f1(num1, den1);
 
-    cout << "Entrez la deuxieme fraction (num den) : ";
-    cin >> num2 >> den2;
+        cout << "Entrez la deuxieme fraction (num den) : ";
+        cin >> num2 >> den2;
 
-    Fraction f2(num2, den2);
+        Fraction f2(num2, den2);
 
-    Fraction troisQuarts(3, 4);
-    Fraction cinqHuitiemes(5, 8);
-    Fraction quatre(4);
+        Fraction troisQuarts(3, 4);
+        Fraction cinqHuitiemes(5, 8);
+        Fraction quatre(4);
 
-    Fraction numerateur =
-        f1.somme(troisQuarts).difference(f2);
+        Fraction numerateur =
+            f1.somme(troisQuarts).difference(f2);
 
-    Fraction denominateur =
-        f1.produit(f2).difference(cinqHuitiemes);
+        Fraction denominateur =
+            f1.produit(f2).difference(cinqHuitiemes);
 
-    Fraction E =
-        numerateur.division(denominateur).somme(quatre);
+        Fraction E =
+            numerateur.division(denominateur).somme(quatre);
 
-    cout << "Resultat de E = ";
-    E.affiche();
-    cout << endl;
+        cout << "Resultat de E = ";
+        E.affiche();
+        cout << endl;
+    } catch (const invalid_argument &e) {
+        cerr << "Erreur de fraction: " << e.what() << endl;
+    }
 
     Produit p;
     p.initialiser(123, 10.5, 20);
@@ -95,7 +104,9 @@ int main() {
     cout << "Prix total du stock : " << p.prix_total() << endl;
 
     // Retirer des produits
-    p.retirer(5);
+    if (!p.retirer(5)) {
+        cerr << "Echec du retrait de produits" << endl;
+    }
 
     cout << endl;
     cout << "=== Apres retrait ===" << endl;
@@ -108,33 +119,39 @@ int main() {
     cout << "=== Apres ajout ===" << endl;
     p.afficher();
 
-    Cercle c;
-    c.initialiser(5, 0, 0);
-    c.afficher();
-    cout << "Surface: " << c.calculerSurface() << endl;
-    cout << "Perimetre: " << c.calculerPerimetre() << endl;
+    Cercle cercle;
+    cercle.initialiser(5, 0, 0);
+    cercle.afficher();
+    cout << "Surface: " << cercle.calculerSurface() << endl;
+    cout << "Perimetre: " << cercle.calculerPerimetre() << endl;
 
-    c.deplacer(2, 3);
+    cercle.deplacer(2, 3);
     cout << "Apres deplacement: ";
-    c.afficher();
+    cercle.afficher();
 
-    c.agrandir(2);
+    cercle.agrandir(2);
     cout << "Apres agrandissement: ";
-    c.afficher();
+    cercle.afficher();
 
-      CompteBancaire c1(1, 1000), c2(2, 500);
-    c1.afficher();
-    c2.afficher();
-    c1.deposer(200);
+    CompteBancaire cb1(1, 1000), cb2(2, 500);
+    cb1.afficher();
+    cb2.afficher();
+    cb1.deposer(200);
     cout << "Apres depot: " << endl;
-    c1.afficher();
-    c1.retirer(150);
+    cb1.afficher();
+
+    if (!cb1.retirer(150)) {
+        cerr << "Echec du retrait" << endl;
+    }
     cout << "Apres retrait: " << endl;
-    c1.afficher();
-    c1.virement(c2, 300);
+    cb1.afficher();
+
+    if (!cb1.virement(cb2, 300)) {
+        cerr << "Echec du virement" << endl;
+    }
     cout << "Apres virement: " << endl;
-    c1.afficher();
-    c2.afficher();
+    cb1.afficher();
+    cb2.afficher();
 
 
 

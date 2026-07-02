@@ -2,62 +2,57 @@
 #define CHAINE_H
 
 #include <iostream>
-#include <cstring> // S'ta3melnah 3la qbel strlen, strcpy, strcat, strcmp
-#include <cstdlib> // S'ta3melnah 3la qbel exit()
+#include <cstring>
+#include <stdexcept>
 
 using namespace std;
-//Objet = instance créée à partir d'une classe.
 
-//Attribut = donnée stockée dans l'objet.
-
-//Méthode = fonction appartenant à la classe.
-
-//objet.attribut  → lire ou modifier une donnée.
-//objet.methode() → exécuter une action.
 class chaine {
 private:
     int longueur;
     char *texte;
 
 public:
-    // 1. Constructeur par défaut (Création d'une chaîne vide)
+    // Constructeur par defaut
     chaine() {
         longueur = 0;
         texte = new char[1];
         texte[0] = '\0';
     }
 
-    // 2. Constructeur par paramètre (Création à partir d'un texte)
-    chaine(const char *s) { //Chaine c("bonjour");
-        longueur = strlen(s);//7
-        texte = new char[longueur + 1];//b o n j o u r \0
-        strcpy(texte, s);//texte = "bonjour"
+    // Constructeur par parametre
+    chaine(const char *s) {
+        if (s == nullptr) {
+            throw invalid_argument("Le pointeur de texte ne peut pas etre null");
+        }
+        longueur = strlen(s);
+        texte = new char[longueur + 1];
+        strcpy(texte, s);
     }
 
-    // 3. Constructeur de copie (Copie profonde pour éviter les conflits de mémoire)
-    chaine(const chaine &c) {//chaine c1("bonjour");chaine c2(c1);
-        longueur = c.longueur;//7
-        texte = new char[longueur + 1];//b o n j o u r \0
-        strcpy(texte, c.texte); // after ([ ][ ][ ][ ][ ][ ][ ][ ],[b][o][n][j][o][u][r][\0]) =>([b][o][n][j][o][u][r][\0],[b][o][n][j][o][u][r][\0])
+    // Constructeur de copie (copie profonde)
+    chaine(const chaine &c) {
+        longueur = c.longueur;
+        texte = new char[longueur + 1];
+        strcpy(texte, c.texte);
     }
 
-    // 4. DESTRUCTEUR (Indispensable pour libérer 'texte' avec delete[])
+    // Destructeur
     ~chaine() {
         delete[] texte;
     }
 
-    // 5. Méthode d'affectation (Copier proprement le contenu d'une autre chaîne)
+    // Affectation
     void affectation(const chaine &c) {
-        if (this != &c) // Anti-auto-affectation
-        {
-            delete[] texte; // On vide l'ancienne mémoire
+        if (this != &c) {
+            delete[] texte;
             longueur = c.longueur;
-            texte = new char[longueur + 1]; // On réalloue la bonne taille
-            strcpy(texte, c.texte); // On copie le texte
+            texte = new char[longueur + 1];
+            strcpy(texte, c.texte);
         }
     }
 
-    // 6. Méthode de comparaison
+    // Comparaison
     void comparaison(const chaine &c) {
         if (strcmp(texte, c.texte) == 0) {
             cout << "Les chaines sont egales." << endl;
@@ -66,30 +61,29 @@ public:
         }
     }
 
-    // 7. Méthode de concaténation (Fusionner deux chaînes)
+    // Concatenation
     void concatenation(const chaine &c) {
         int nouvelleLongueur = longueur + c.longueur;
-        char *nouveauTexte = new char[nouvelleLongueur + 1]; // Nouveau grand tableau
+        char *nouveauTexte = new char[nouvelleLongueur + 1];
 
-        strcpy(nouveauTexte, texte);   // Copie de la 1ère partie
-        strcat(nouveauTexte, c.texte); // Ajout de la 2ème partie à la fin
+        strcpy(nouveauTexte, texte);
+        strcat(nouveauTexte, c.texte);
 
-        delete[] texte; // Suppression du petit tableau d'avant
-        texte = nouveauTexte; // Le pointeur prend la nouvelle adresse
+        delete[] texte;
+        texte = nouveauTexte;
         longueur = nouvelleLongueur;
     }
 
-    // 8. Méthode d'accès à un caractère spécifique
+    // Acces a un caractere par index
     char acces(int i) {
-        if (i >= 0 && i < longueur) {
-            return texte[i];
-        } else {
-            cerr << "Index out of bounds." << endl;
-            exit(1); // Arrêt propre du programme en cas d'erreur d'index
+        if (i < 0 || i >= longueur) {
+            throw out_of_range("Index hors limites (index: " + to_string(i)
+                + ", longueur: " + to_string(longueur) + ")");
         }
+        return texte[i];
     }
 
-    // Fonction bonus pour afficher le résultat f le main
+    // Affichage
     void afficher() const {
         cout << "Texte: " << texte << " | Longueur: " << longueur << endl;
     }
@@ -97,4 +91,3 @@ public:
 
 
 #endif
-
