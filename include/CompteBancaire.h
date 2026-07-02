@@ -1,6 +1,8 @@
 #ifndef COMPTEBANCAIRE_H
 #define COMPTEBANCAIRE_H
 
+#include <iostream>
+using namespace std;
 
 class CompteBancaire {
     private:
@@ -32,6 +34,8 @@ class CompteBancaire {
         }
     }
 
+    float getSolde() const { return solde; }
+    int getNumero() const { return numero; }
 };
 
 

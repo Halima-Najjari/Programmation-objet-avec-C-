@@ -1,6 +1,8 @@
 #ifndef PRODUIT_H
 #define PRODUIT_H
 
+#include <iostream>
+using namespace std;
 
 class Produit {
 
@@ -44,6 +46,10 @@ public:
     void ajouter(int n) {
         quantite += n;
     }
+
+    int getRef() const { return ref; }
+    float getPuht() const { return puht; }
+    int getQuantite() const { return quantite; }
 };
 
 
