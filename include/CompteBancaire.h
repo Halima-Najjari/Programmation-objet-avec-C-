@@ -1,6 +1,9 @@
 #ifndef COMPTEBANCAIRE_H
 #define COMPTEBANCAIRE_H
 
+#include <iostream>
+
+using namespace std;
 
 class CompteBancaire {
     private:
@@ -11,9 +14,17 @@ class CompteBancaire {
      CompteBancaire(int n, float s): numero(n) ,solde(s) {}
 
     void deposer(float montant) {
+        if (montant <= 0) {
+            cout << "Le montant doit etre positif" << endl;
+            return;
+        }
         solde += montant;
     }
     void retirer(float montant) {
+        if (montant <= 0) {
+            cout << "Le montant doit etre positif" << endl;
+            return;
+        }
         if (montant <= solde) {
             solde -= montant;
         } else {
@@ -24,9 +35,13 @@ class CompteBancaire {
         cout << "Numero: " << numero << ", Solde: " << solde << endl;
     }
     void virement(CompteBancaire &dest, float montant) {
+        if (montant <= 0) {
+            cout << "Le montant doit etre positif" << endl;
+            return;
+        }
         if (montant <= solde) {
             solde -= montant;
-            dest.deposer(montant);
+            dest.solde += montant;
         } else {
             cout << "Fonds insuffisants pour le virement" << endl;
         }

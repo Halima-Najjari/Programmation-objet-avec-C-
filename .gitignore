@@ -1,0 +1,17 @@
+# Compiled object files
+*.o
+*.obj
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Build directories
+bin/
+obj/
+
+# IDE files
+*.layout
+*.depend
+*.cbp.bak

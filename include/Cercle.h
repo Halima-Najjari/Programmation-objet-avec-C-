@@ -1,12 +1,15 @@
 #ifndef CERCLE_H
 #define CERCLE_H
 
+#include <iostream>
+
+using namespace std;
 
 class Cercle {
  private:
     float rayon;
     float abscisse;
-    float ordonnée;
+    float ordonnÃ©e;
  public:
 
     float calculerSurface() {
@@ -18,14 +21,14 @@ class Cercle {
     void initialiser(float r, float x, float y) {
         rayon = r;
         abscisse = x;
-        ordonnée = y;
+        ordonnÃ©e = y;
     }
     void afficher() {
-        cout << "Rayon: " << rayon << ", Abscisse: " << abscisse << ", Ordonnée: " << ordonnée << endl;
+        cout << "Rayon: " << rayon << ", Abscisse: " << abscisse << ", OrdonnÃ©e: " << ordonnÃ©e << endl;
     }
      void deplacer(float dx, float dy) {
         abscisse += dx;
-        ordonnée += dy;
+        ordonnÃ©e += dy;
     }
     void agrandir(float facteur) {
         rayon *= facteur;

@@ -46,6 +46,17 @@ public:
         delete[] texte;
     }
 
+    // 4b. Opérateur d'affectation (Rule of Three)
+    chaine& operator=(const chaine &c) {
+        if (this != &c) {
+            delete[] texte;
+            longueur = c.longueur;
+            texte = new char[longueur + 1];
+            strcpy(texte, c.texte);
+        }
+        return *this;
+    }
+
     // 5. Méthode d'affectation (Copier proprement le contenu d'une autre chaîne)
     void affectation(const chaine &c) {
         if (this != &c) // Anti-auto-affectation
