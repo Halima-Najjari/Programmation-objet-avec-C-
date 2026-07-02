@@ -1,37 +1,40 @@
 #ifndef CERCLE_H
 #define CERCLE_H
 
+#include "common.h"
+#include "MathConstants.h"
 
 class Cercle {
- private:
+private:
     float rayon;
     float abscisse;
-    float ordonnée;
- public:
+    float ordonnee;
+
+public:
+    Cercle(float r = 0, float x = 0, float y = 0)
+        : rayon(r), abscisse(x), ordonnee(y) {}
 
     float calculerSurface() {
-        return 3.14159 * rayon * rayon;
+        return MathConstants::PI * rayon * rayon;
     }
+
     float calculerPerimetre() {
-        return 2 * 3.14159 * rayon;
+        return 2 * MathConstants::PI * rayon;
     }
-    void initialiser(float r, float x, float y) {
-        rayon = r;
-        abscisse = x;
-        ordonnée = y;
-    }
+
     void afficher() {
-        cout << "Rayon: " << rayon << ", Abscisse: " << abscisse << ", Ordonnée: " << ordonnée << endl;
+        cout << "Rayon: " << rayon << ", Abscisse: " << abscisse
+             << ", Ordonnee: " << ordonnee << endl;
     }
-     void deplacer(float dx, float dy) {
+
+    void deplacer(float dx, float dy) {
         abscisse += dx;
-        ordonnée += dy;
+        ordonnee += dy;
     }
+
     void agrandir(float facteur) {
         rayon *= facteur;
     }
-
 };
-
 
 #endif // CERCLE_H
