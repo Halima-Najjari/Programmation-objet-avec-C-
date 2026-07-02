@@ -1,6 +1,9 @@
 #ifndef PRODUIT_H
 #define PRODUIT_H
 
+#include <iostream>
+
+using namespace std;
 
 class Produit {
 
@@ -37,11 +40,23 @@ public:
 
     // Retirer du stock
     void retirer(int n) {
+        if (n <= 0) {
+            cout << "La quantite doit etre positive" << endl;
+            return;
+        }
+        if (n > quantite) {
+            cout << "Stock insuffisant" << endl;
+            return;
+        }
         quantite -= n;
     }
 
     // Ajouter au stock
     void ajouter(int n) {
+        if (n <= 0) {
+            cout << "La quantite doit etre positive" << endl;
+            return;
+        }
         quantite += n;
     }
 };
